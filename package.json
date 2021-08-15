@@ -1,0 +1,18 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "aedes": "^0.46.1",
+    "aedes-persistence-mongodb": "^8.2.0",
+    "aedes-persistence-redis": "^8.0.1",
+    "mqemitter-mongodb": "^7.0.4",
+    "mqtt": "^4.2.8",
+    "websocket-stream": "^5.5.2"
+  }
+}
