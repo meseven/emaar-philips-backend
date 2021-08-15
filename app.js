@@ -1,5 +1,12 @@
 const redisClient = require('./redis-client');
 const aedesPersistenceRedis = require('aedes-persistence-redis');
+const { createServer } = require('aedes-server-factory');
+const http = require('http');
+const _aedes = require('aedes');
+const ws = require('websocket-stream');
+
+const MQTT_PORT = 1883;
+const HTTP_PORT = 8888;
 
 const persistence = aedesPersistenceRedis({
   conn: redisClient,
@@ -10,18 +17,22 @@ const persistence = aedesPersistenceRedis({
   },
 });
 
-const aedes = require('aedes')({
+const aedes = _aedes({
   persistence,
 });
-const httpServer = require('http').createServer();
-const ws = require('websocket-stream');
-const port = 8888;
 
-const server = ws.createServer({ server: httpServer }, aedes.handle);
+const createMqttServer = createServer(aedes);
+const createHttpServer = http.createServer();
+
+const httpServer = ws.createServer({ server: createHttpServer }, aedes.handle);
 
 // aedes.publish({ topic: 'aedes/hello', payload: "I'm broker " + aedes.id });
 
-server.on('client', function (client) {
+createMqttServer.listen(MQTT_PORT, function () {
+  console.log('MQTT Server started and listening on port ', MQTT_PORT);
+});
+
+httpServer.on('client', function (client) {
   console.log(
     'Client Connected: \x1b[33m' + (client ? client.id : client) + '\x1b[0m',
     'to broker',
@@ -40,6 +51,6 @@ aedes.on('message', () => {
   console.log('message');
 });
 
-httpServer.listen(port, function () {
-  console.log('websocket server listening on port ', port);
+createHttpServer.listen(HTTP_PORT, function () {
+  console.log('websocket server listening on port ', HTTP_PORT);
 });
