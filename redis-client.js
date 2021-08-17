@@ -1,11 +1,13 @@
 const redis = require('ioredis');
 require('dotenv').config();
 
-const client = redis.createClient({
+const config = {
   port: Number(process.env.REDIS_PORT) || 6379,
   host: process.env.REDIS_HOST,
   ...(process.env.NODE_ENV === 'production' && { password: process.env.REDIS_PASSWORD }),
-});
+};
+
+const client = redis.createClient(config);
 
 if (process.env.NODE_ENV !== 'test') {
   // client.on('connect', () => console.log('Connected to Redis 🔫'));
@@ -15,4 +17,4 @@ if (process.env.NODE_ENV !== 'test') {
 }
 // process.on('SIGINT', () => client.quit());
 
-module.exports = client;
+module.exports = { config, redisClient: client };

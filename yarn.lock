@@ -309,7 +309,7 @@ help-me@^3.0.0:
     glob "^7.1.6"
     readable-stream "^3.6.0"
 
-hyperid@^2.1.0:
+hyperid@^2.0.0, hyperid@^2.1.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/hyperid/-/hyperid-2.3.1.tgz#70cc2c917b6367c9f7307718be243bc28b258353"
   integrity sha512-mIbI7Ymn6MCdODaW1/6wdf5lvvXzmPsARN4zTLakMmcziBOuP4PxCBJvHF6kbAIHX6H4vAELx/pDmt0j6Th5RQ==
@@ -340,7 +340,14 @@ int64-buffer@^0.1.9:
   resolved "https://registry.yarnpkg.com/int64-buffer/-/int64-buffer-0.1.10.tgz#277b228a87d95ad777d07c13832022406a473423"
   integrity sha1-J3siiofZWtd30HwTgyAiQGpHNCM=
 
-ioredis@^4.17.3:
+ioredis-auto-pipeline@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/ioredis-auto-pipeline/-/ioredis-auto-pipeline-1.0.2.tgz#61d57870ac474454ca51e5eb31bcaa60367f3f0b"
+  integrity sha512-Axp07oVqbUAArCuIjlfXfME0/te/R7x43zfeGEpY1UTJjWdTUIw/h+K/LfIkRGCv8aCB4bCypHft8AQZ+1Z7zw==
+  dependencies:
+    to-fast-properties "^3.0.0"
+
+ioredis@^4.0.0, ioredis@^4.17.3:
   version "4.27.7"
   resolved "https://registry.yarnpkg.com/ioredis/-/ioredis-4.27.7.tgz#11bf2947e23a0e8055931afa7c2da89fc48c8ff3"
   integrity sha512-lqvFFmUyGIHlrNyDvBoakzy1+ioJzNyoP6CP97GWtdTjWq9IOAnv6l0HUTsqhvd/z9etGgtrDHZ4kWCMAwNkug==
@@ -381,6 +388,13 @@ lodash.isarguments@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/lodash.isarguments/-/lodash.isarguments-3.1.0.tgz#2f573d85c6a24289ff00663b491c1d338ff3458a"
   integrity sha1-L1c9hcaiQon/AGY7SRwdM4/zRYo=
+
+lru-cache@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-6.0.0.tgz#6d6fe6570ebd96aaf90fcad1dafa3b2566db3a94"
+  integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
+  dependencies:
+    yallist "^4.0.0"
 
 memory-pager@^1.0.2:
   version "1.5.0"
@@ -423,7 +437,20 @@ mqemitter-mongodb@^7.0.4:
     pump "^3.0.0"
     through2 "^4.0.2"
 
-mqemitter@^4.4.0, mqemitter@^4.4.1:
+mqemitter-redis@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mqemitter-redis/-/mqemitter-redis-4.1.0.tgz#4b1b89452519a6948043629ffcfd88284de75b1e"
+  integrity sha512-FpAv4AxFyWvz9D1crwmsO5yo1I9B0KnzkACTXAn8heXcJIAxOsUlGULVhfCXAkYQUl+p8CcsXMerVE3aqza20Q==
+  dependencies:
+    hyperid "^2.0.0"
+    inherits "^2.0.1"
+    ioredis "^4.0.0"
+    ioredis-auto-pipeline "^1.0.1"
+    lru-cache "^6.0.0"
+    mqemitter "^4.1.3"
+    msgpack-lite "^0.1.14"
+
+mqemitter@^4.1.3, mqemitter@^4.4.0, mqemitter@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/mqemitter/-/mqemitter-4.4.1.tgz#4cd2bc7d2fd5f2ba8c0c33ec68a8d70c9ff994ea"
   integrity sha512-tXSsyzhsD70Jc7WFz1tjbfczGOAyObMhJ8O15ZFkpDI+g9ENmWFUo5BseAuS9HCxNnFtnMWo4lHh7yDi5CjVTQ==
@@ -474,7 +501,7 @@ ms@2.1.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-msgpack-lite@^0.1.26:
+msgpack-lite@^0.1.14, msgpack-lite@^0.1.26:
   version "0.1.26"
   resolved "https://registry.yarnpkg.com/msgpack-lite/-/msgpack-lite-0.1.26.tgz#dd3c50b26f059f25e7edee3644418358e2a9ad89"
   integrity sha1-3TxQsm8FnyXn7e42REGDWOKprYk=
@@ -681,6 +708,11 @@ throughv@^1.0.4:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
+to-fast-properties@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-3.0.1.tgz#c7d507fdccc306c1e6782069db6b0e6fcc1a93f5"
+  integrity sha512-/wtNi1tW1F3nf0OL6AqVxGw9Tr1ET70InMhJuVxPwFdGqparF0nQ4UWGLf2DsoI2bFDtthlBnALncZpUzOnsUw==
+
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
@@ -741,3 +773,8 @@ xtend@^4.0.0, xtend@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
+
+yallist@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/yallist/-/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
+  integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
