@@ -1,7 +1,11 @@
 const cluster = require('cluster');
+const os = require('os');
 const _aedes = require('aedes');
 const aedesPersistenceRedis = require('aedes-persistence-redis');
 const mqemitter = require('mqemitter-redis');
+const ws = require('websocket-stream');
+const http = require('http');
+const net = require('net');
 const { redisClient, config } = require('./redis-client');
 
 const mq = mqemitter(config);
@@ -26,11 +30,10 @@ function startAedes() {
   });
 
   // mqtt server
-  const server = require('net').createServer(aedes.handle);
+  const server = net.createServer(aedes.handle);
 
   // ws server
-  const httpServer = require('http').createServer();
-  const ws = require('websocket-stream');
+  const httpServer = http.createServer();
   ws.createServer({ server: httpServer }, aedes.handle);
 
   server.listen(port, function () {
@@ -97,7 +100,7 @@ function startAedes() {
 }
 
 if (cluster.isMaster) {
-  const numWorkers = require('os').cpus().length;
+  const numWorkers = os.cpus().length;
   for (let i = 0; i < numWorkers; i++) {
     cluster.fork();
   }
